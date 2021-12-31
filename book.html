@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  background-image: url('back.png');
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #073590;
+  width: 100%;
+
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 30px;
+}
+
+.topnav a:hover {
+  background-color: #f1c933;
+  color: white;
+}
+
+.topnav a.active {
+  background-color: #f1c933;
+  color: white;
+}
+.button {
+  background-color: #073590; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+  margin: 4px 2px;
+  cursor: grab;
+}
+</style>
+</head>
+<body>
+<div class="topnav">
+  <a href="index.html">Home</a>
+  <a href="news.html">News</a>
+  <a href="contact.html">Contact</a>
+  <a href="about.html">About</a>
+  <a href="flight.html">Flights</a>
+  <a class="active" href="book.html">Flight Booking</a>
+  <a href="https://discord.gg/K46UHsH8mN">Discord</a>
+</div>
+<div style="padding-left:16px">
+  <h1><center>Booking</center></h1>
+  <p><center>If you need help contact ryanairsuppor@gmail.com</center></p>
+</div>
+<div>
+  <center>
+  <h3>Flight Number:</h3>
+  <input name="searchTxt" type="text" maxlength="4" id="myTextInputID" class="searchField"/>
+  <h3>Discord ID:</h3>
+  <input name="searchTxt" type="text" maxlength="512" id="myTextInputID1" class="searchField"/>
+  </center>
+</div>
+<center>
+<button onclick="sendMessage()", class="button">Book</button>
+</center>
+</body>
+<script>
+  function sendMessage() {
+    const request = new XMLHttpRequest();
+    request.open("POST", "https://discord.com/api/webhooks/926543297617469450/oycyScYSIBJ8lt3c08xuWDdVKc5IMuYol-3LRotRyR0kGWwKGWZtPhyU9mKL_SnjLrR3");
+    var inputValue = document.getElementById("myTextInputID").value;
+    var inputValue1 = document.getElementById("myTextInputID1").value;
+
+    request.setRequestHeader('Content-type', 'application/json');
+    const params = {
+      username: "Ryanair Webhook",
+      avatar_url: "https://cdn.discordapp.com/attachments/926148056167108709/926148509877555220/pobrane_1.jpg",
+      content: `!web-order ${inputValue} ${inputValue1}`
+    }
+    request.send(JSON.stringify(params));
+  }
+</script>
+</html>
